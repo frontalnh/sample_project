@@ -9,6 +9,9 @@ const nextConfig = {
       // 'prod-graegrae-private.s3.ap-northeast-2.amazonaws.com',
     ],
   },
+  compiler: {
+    emotion: true,
+  },
 }
 
 module.exports = nextConfig
