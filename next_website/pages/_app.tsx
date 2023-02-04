@@ -5,6 +5,12 @@ import * as ga from '../lib/ga';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
+// toastify
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+// toastify
+
+
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
@@ -19,5 +25,18 @@ export default function App({ Component, pageProps }: AppProps) {
     };
   }, [router.events]);
 
-  return <Component {...pageProps} />
+  return <>
+  <ToastContainer
+    position='bottom-center'
+    autoClose={2000}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+  />
+  <Component {...pageProps} />
+</>
 }
