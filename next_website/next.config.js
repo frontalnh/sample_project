@@ -12,6 +12,14 @@ const nextConfig = {
   compiler: {
     emotion: true,
   },
+  webpack: (config, { isServer }) => {
+    // svg 사용을 위한 config
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+    return config;
+  },
 }
 
 module.exports = nextConfig
