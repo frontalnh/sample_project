@@ -1,0 +1,37 @@
+import { createSvgIcon } from '@mui/material';
+
+const OutlinePhotoSvgIcon = createSvgIcon(
+  <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <path
+      d='M7.11198 16.8887H5.33398V5.33337H16.8893V7.11137'
+      stroke='#202020'
+      strokeMiterlimit='10'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+    <path
+      d='M7.11133 7.11133H18.6667V18.6667H7.11133V7.11133Z'
+      stroke='#202020'
+      strokeMiterlimit='10'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+    <path
+      d='M9.66797 10.6667C10.2203 10.6667 10.668 10.219 10.668 9.66675C10.668 9.11446 10.2203 8.66675 9.66797 8.66675C9.11568 8.66675 8.66797 9.11446 8.66797 9.66675C8.66797 10.219 9.11568 10.6667 9.66797 10.6667Z'
+      stroke='#202020'
+      strokeMiterlimit='10'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+    <path
+      d='M8.44531 16C8.44531 15.378 9.02331 12.4447 10.512 12.4447C12.0006 12.4447 11.8673 13.778 12.4453 13.778C13.0233 13.778 13.0233 10.222 14.6673 10.222C16.3113 10.222 17.334 15.5107 17.334 16'
+      stroke='#202020'
+      strokeMiterlimit='10'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+    <path d='M7.11133 16H18.6667' stroke='#202020' strokeMiterlimit='10' strokeLinecap='round' strokeLinejoin='round' />
+  </svg>,
+  'OutlinePhotoSvgIcon',
+);
+export default OutlinePhotoSvgIcon;
