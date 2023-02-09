@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode, useState } from 'react';
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import * as ga from '../lib/ga';
@@ -15,6 +15,13 @@ import ThemeProviderWrapper from '@theme/ThemeProvider';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { NextPage } from 'next';
 // toastify
+
+import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ModalsProvider } from '@components/shared/context/modalContext';
+import GlobalStyle from 'styles/global';
+import { CssBaseline } from '@mui/material';
+import Modals from '@components/shared/Modals';
+
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -41,24 +48,42 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, [router.events]);
-
+  const [client] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 1000 * 1,
+          },
+        },
+      }),
+  );
   return (
     <>
       <CacheProvider value={emotionCache}>
-        <ThemeProviderWrapper>
-          <ToastContainer
-            position='bottom-center'
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
-          {getLayout(<Component {...pageProps} />, pageProps)}
-        </ThemeProviderWrapper>
+        <QueryClientProvider client={client}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <ThemeProviderWrapper>
+              <ModalsProvider>
+                <ToastContainer
+                  position='bottom-center'
+                  autoClose={2000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                />
+                <GlobalStyle />
+                <CssBaseline />
+                <Modals />
+                {getLayout(<Component {...pageProps} />, pageProps)}
+              </ModalsProvider>
+            </ThemeProviderWrapper>
+          </Hydrate>
+        </QueryClientProvider>
       </CacheProvider>
     </>
   );
