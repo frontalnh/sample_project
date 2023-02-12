@@ -5,6 +5,7 @@ declare global {
 }
 
 export const emitEvent = (params: { to: any; callback: () => void }) => {
+  if (!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) return;
   const { to, callback } = params;
 
   window.gtag('event', 'conversion', {
@@ -14,6 +15,7 @@ export const emitEvent = (params: { to: any; callback: () => void }) => {
 };
 
 export const pageview = (url: string) => {
+  if (!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) return;
   window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS as any, {
     page_path: url,
   });

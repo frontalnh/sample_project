@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Button, ButtonProps, Typography, SxProps, CircularProgress } from '@mui/material';
 import { useCallback, useMemo } from 'react';
 import { AppColors } from '@theme/schemes/AppPersonalColor';
@@ -12,6 +12,7 @@ interface DefaultButtonProps {
   disabledStyle?: SxProps;
   hoverStyle?: SxProps;
   loading?: boolean;
+  leftIcon?: ReactNode;
   size?: 'small' | 'medium' | 'large';
   colors?: 'primary' | 'secondary' | 'outline';
 }
@@ -24,6 +25,7 @@ const DefaultButton = ({
   disabledStyle,
   hoverStyle,
   size,
+  leftIcon,
   colors,
   loading = false,
   ...rest
@@ -51,18 +53,18 @@ const DefaultButton = ({
           return colors === 'primary'
             ? AppColors.black
             : colors === 'secondary'
-            ? AppColors.lightGrey
-            : colors === 'outline'
-            ? 'transparent'
-            : AppColors.black;
+              ? AppColors.lightGrey
+              : colors === 'outline'
+                ? 'transparent'
+                : AppColors.black;
         } else {
           return colors === 'primary'
             ? AppColors.white
             : colors === 'secondary'
-            ? AppColors.black
-            : colors === 'outline'
-            ? AppColors.black
-            : AppColors.white;
+              ? AppColors.black
+              : colors === 'outline'
+                ? AppColors.black
+                : AppColors.white;
         }
         // hover 속성
       } else if (style === 'hover') {
@@ -70,18 +72,18 @@ const DefaultButton = ({
           return colors === 'primary'
             ? AppColors.black72
             : colors === 'secondary'
-            ? '#EDEDED'
-            : colors === 'outline'
-            ? AppColors.whiteGrey
-            : AppColors.black72;
+              ? '#EDEDED'
+              : colors === 'outline'
+                ? AppColors.whiteGrey
+                : AppColors.black72;
         } else {
           return colors === 'primary'
             ? AppColors.white
             : colors === 'secondary'
-            ? AppColors.black
-            : colors === 'outline'
-            ? AppColors.black
-            : AppColors.white;
+              ? AppColors.black
+              : colors === 'outline'
+                ? AppColors.black
+                : AppColors.white;
         }
         // disabled 속성
       } else if (style === 'disabled') {
@@ -89,18 +91,18 @@ const DefaultButton = ({
           return colors === 'primary'
             ? AppColors.grey
             : colors === 'secondary'
-            ? AppColors.lightGrey
-            : colors === 'outline'
-            ? AppColors.lightGrey
-            : AppColors.grey;
+              ? AppColors.lightGrey
+              : colors === 'outline'
+                ? AppColors.lightGrey
+                : AppColors.grey;
         } else {
           return colors === 'primary'
             ? AppColors.white
             : colors === 'secondary'
-            ? AppColors.grey
-            : colors === 'outline'
-            ? AppColors.grey
-            : AppColors.white;
+              ? AppColors.grey
+              : colors === 'outline'
+                ? AppColors.grey
+                : AppColors.white;
         }
       }
     },
@@ -144,6 +146,12 @@ const DefaultButton = ({
         ...wrapperStyle,
       }}
       {...rest}>
+      {leftIcon && <div style={{
+        display: 'flex', flexDirection: 'column', height: '100%',
+        justifyContent: 'center'
+      }}>
+        {leftIcon}
+      </div>}
       <Typography
         sx={{
           fontSize: fontSize,
